@@ -1,6 +1,12 @@
 @use "variables" as v;
 @use "cleanup";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
 :root {
   --color-background: #{v.$color-background};
+  --color-primary: #{v.$color-primary};
+}
+
+* {
+  font-family: 'Roboto', sans-serif;
 }

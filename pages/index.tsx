@@ -1,7 +1,7 @@
 import type {FC} from "react";
 import type {GetStaticProps} from "next";
 import {ServerStatusCard, ServerStatusModel, ServerStatusService, useServerStatus} from "../src/server-status";
-import {Centered} from "../src/components";
+import {Button, Centered} from "../src/components";
 
 const getStaticProps: GetStaticProps = async () => {
   const service = new ServerStatusService();
@@ -25,7 +25,7 @@ const Home: FC<{ status: ServerStatusModel }> = (props) => {
           <ServerStatusCard status={status}/>
           <br/>
 
-          <button onClick={loadStatus}>refresh</button>
+          <Button onClick={loadStatus}>refresh</Button>
         </>
       ) : <span>loading...</span>}
     </Centered>
