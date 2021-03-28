@@ -10,10 +10,12 @@ const useServerStatus = (defaultStatus?: ServerStatusModel) => {
 
     fetch("/api/status")
       .then(res => res.json())
-      .then((data) => {
-        setStatus(data);
-        setIsLoading(false);
+      .then(setStatus)
+      .catch(e => {
+        console.error(e);
+        setStatus(new ServerStatusModel());
       })
+      .finally(() => setIsLoading(false));
   }, []);
 
   return {status, isLoading, loadStatus};

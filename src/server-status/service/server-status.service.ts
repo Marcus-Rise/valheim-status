@@ -8,9 +8,13 @@ class ServerStatusService {
   }
 
   async get(): Promise<ServerStatusModel> {
-    const response = await fetch(this.config.apiUrl);
-    const data = await response.json();
-    const model = ServerStatusModelFabric.fromResponseDto(data);
+    let model = new ServerStatusModel();
+
+    await fetch(this.config.apiUrl)
+      .then(res => res.json())
+      .then(data => {
+        model = ServerStatusModelFabric.fromResponseDto(data);
+      }).catch(console.error);
 
     return classToPlain(model) as ServerStatusModel;
   }
