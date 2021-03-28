@@ -2,6 +2,7 @@ import type {FC} from "react";
 import type {GetStaticProps} from "next";
 import {ServerStatusCard, ServerStatusModel, ServerStatusService, useServerStatus} from "../src/server-status";
 import {Button, Centered} from "../src/components";
+import Head from "next/head";
 
 const getStaticProps: GetStaticProps = async () => {
   const service = new ServerStatusService();
@@ -19,16 +20,22 @@ const Home: FC<{ status: ServerStatusModel }> = (props) => {
   const {status, loadStatus, isLoading} = useServerStatus(props.status);
 
   return (
-    <Centered splash column>
-      {!isLoading ? (
-        <>
-          <ServerStatusCard status={status}/>
-          <br/>
+    <>
+      <Head>
+        <title>Valheim Server{status.status && ` | ${status.status}`}</title>
+        <meta name={"description"} content={"MarcusRise Valheim server status"}/>
+      </Head>
+      <Centered splash column>
+        {!isLoading ? (
+          <>
+            <ServerStatusCard status={status}/>
+            <br/>
 
-          <Button onClick={loadStatus}>refresh</Button>
-        </>
-      ) : <span>loading...</span>}
-    </Centered>
+            <Button onClick={loadStatus}>refresh</Button>
+          </>
+        ) : <span>loading...</span>}
+      </Centered>
+    </>
   );
 };
 
