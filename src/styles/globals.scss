@@ -4,11 +4,22 @@
 
 :root {
   --color-background: #{v.$color-background};
+  --color-background-container: #{v.$color-background-container};
   --color-primary: #{v.$color-primary};
   --color-danger: #{v.$color-danger};
   --color-success: #{v.$color-success};
+  --color-text-primary: #{v.$color-text-primary};
+
+  @media (prefers-color-scheme: dark) {
+    --color-background: #{v.$color-background-dark};
+    --color-background-container: #{v.$color-background-container-dark};
+    --color-primary: #{v.$color-primary-dark};
+    --color-text-primary: #{v.$color-text-primary-dark};
+  }
 }
 
 * {
   font-family: 'Roboto', sans-serif;
+
+  color: var(--color-text-primary);
 }
