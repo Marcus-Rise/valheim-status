@@ -28,6 +28,7 @@ const Home: FC<{ status: ServerStatusModel }> = (props) => {
       <Centered splash column>
         {!isLoading ? (
           <>
+            <h1>Valheim Server</h1>
             <ServerStatusCard status={status}/>
             <br/>
 
