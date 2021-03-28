@@ -1,3 +1,5 @@
+@use "src/styles/variables" as v;
+
 .title {
   font-weight: bold;
 }
@@ -13,12 +15,12 @@
 
 .success {
   background-color: var(--color-success);
-  color: #d0d0d0;
+  color: v.$color-text-primary-dark;
   text-transform: uppercase;
 }
 
 .danger {
   background-color: var(--color-danger);
-  color: #d0d0d0;
+  color: v.$color-text-primary-dark;
   text-transform: uppercase;
 }
