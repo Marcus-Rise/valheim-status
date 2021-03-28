@@ -2,12 +2,13 @@ import type {FC} from "react";
 import type {GetStaticProps} from "next";
 import {
   ServerStatusCard,
+  ServerStatusCardSkeleton,
   ServerStatusEnum,
   ServerStatusModel,
   ServerStatusService,
   useServerStatus
 } from "../src/server-status";
-import {Button, Centered, Dot} from "../src/components";
+import {Button, Centered, Dot, SkeletonRow} from "../src/components";
 import Head from "next/head";
 
 const getStaticProps: GetStaticProps = async () => {
@@ -41,7 +42,15 @@ const Home: FC<{ status: ServerStatusModel }> = (props) => {
 
             <Button onClick={loadStatus}>refresh</Button>
           </>
-        ) : <span>loading...</span>}
+        ) : (
+          <>
+            <SkeletonRow style={{width: "15em"}}/>
+            <br/>
+            <ServerStatusCardSkeleton/>
+            <br/>
+            <SkeletonRow style={{width: "5em"}}/>
+          </>
+        )}
       </Centered>
     </>
   );
