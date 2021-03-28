@@ -1,5 +1,5 @@
 import {NextApiHandler} from "next";
-import {ServerStatusService} from "../../server-status";
+import {ServerStatusService} from "../../src/server-status";
 
 const ServerStatusHandler: NextApiHandler =async (req, res) => {
   const status = await new ServerStatusService().get();

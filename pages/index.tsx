@@ -1,44 +1,36 @@
 import type {FC} from "react";
-import {useState} from "react";
-import type {GetServerSideProps} from "next";
-import {ServerStatusModel, ServerStatusService} from "../server-status";
+import type {GetStaticProps} from "next";
+import {ServerStatusCard, ServerStatusModel, ServerStatusService, useServerStatus} from "../src/server-status";
+import {Centered} from "../src/components";
 
-const getServerSideProps: GetServerSideProps = async () => {
+const getStaticProps: GetStaticProps = async () => {
   const service = new ServerStatusService();
   const status = await service.get();
 
   return {
     props: {
       status
-    }
+    },
+    revalidate: 60
   }
 }
 
 const Home: FC<{ status: ServerStatusModel }> = (props) => {
-  const [status, setStatus] = useState<ServerStatusModel>(props.status);
-
-  const getStatus = async () => {
-    const resp = await fetch("/api/status");
-    const data = await resp.json();
-
-    setStatus(data);
-  }
-
-  const items = Object.keys(status).map(i => (<li key={i}>
-    <b>{i}:</b> {status[i]}
-  </li>));
+  const {status, loadStatus, isLoading} = useServerStatus(props.status);
 
   return (
-    <div>
-      <ul>
-        {items}
-      </ul>
-      <br/>
+    <Centered splash column>
+      {!isLoading ? (
+        <>
+          <ServerStatusCard status={status}/>
+          <br/>
 
-      <button onClick={getStatus}>refresh</button>
-    </div>
+          <button onClick={loadStatus}>refresh</button>
+        </>
+      ) : <span>loading...</span>}
+    </Centered>
   );
 };
 
-export {getServerSideProps}
+export {getStaticProps}
 export default Home;
