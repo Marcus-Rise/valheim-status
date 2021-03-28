@@ -28,7 +28,7 @@ const ServerStatusCard: FC<{ status: ServerStatusModel }> = ({status}) => {
     return (
       <tr key={i}>
         <td className={classNames(styles.title, styles.column)}>{i}</td>
-        <td className={classNames(row.className, styles.column)}>{row.text}</td>
+        <td className={classNames(row.className, styles.column, styles.value)}>{row.text}</td>
       </tr>
     );
   }), [rowsObject])
