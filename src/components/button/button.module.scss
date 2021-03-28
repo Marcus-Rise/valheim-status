@@ -7,4 +7,12 @@
   background-color: var(--color-primary);
   padding: .5em 1.5em;
   text-transform: uppercase;
+
+  &:hover {
+    filter: brightness(120%);
+  }
+
+  &:active {
+    box-shadow: 0 0 1.5em 0 #606060 inset;
+  }
 }
