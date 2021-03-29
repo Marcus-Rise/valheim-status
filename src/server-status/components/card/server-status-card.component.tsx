@@ -16,6 +16,7 @@ const ServerStatusCard: FC<{ status: ServerStatusModel }> = ({status}) => {
     },
     Players: {
       text: status.players > 0 ? status.players : "none",
+      className: status.players > 0 && styles.bold,
     },
     Version: {
       text: status.version,

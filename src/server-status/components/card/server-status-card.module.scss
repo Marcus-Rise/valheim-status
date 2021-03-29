@@ -15,12 +15,25 @@
 
 .success {
   background-color: var(--color-success);
-  color: v.$color-text-primary-dark;
+  color: white;
   text-transform: uppercase;
+
+  @media (prefers-color-scheme: dark) {
+    color: v.$color-text-primary-dark;
+  }
 }
 
 .danger {
   background-color: var(--color-danger);
-  color: v.$color-text-primary-dark;
+  color: white;
   text-transform: uppercase;
+
+  @media (prefers-color-scheme: dark) {
+    color: v.$color-text-primary-dark;
+  }
+}
+
+.bold {
+  font-weight: bold;
+  font-size: 1.25em;
 }
