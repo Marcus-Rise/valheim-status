@@ -9,8 +9,6 @@ Project is based on [@mbround18](https://github.com/mbround18) [backend](https:/
 First, run the development server:
 
 ```bash
-npm run dev
-# or
 yarn dev
 ```
 
