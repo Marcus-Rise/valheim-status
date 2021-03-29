@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Gratitude
 
-Project is based on @mbround18 [backend](https://github.com/mbround18/valheim-docker)
+Project is based on [@mbround18](https://github.com/mbround18) [backend](https://github.com/mbround18/valheim-docker)
 
 ## Getting Started
 
