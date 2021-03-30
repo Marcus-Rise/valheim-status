@@ -1,10 +1,8 @@
 import {NextApiHandler} from "next";
 import {ServerStatusService} from "../../src/server-status";
 
-const ServerStatusHandler: NextApiHandler =async (req, res) => {
-  const status = await new ServerStatusService().get();
-
-  res.json(status);
+const ServerStatusHandler: NextApiHandler = async (_, res, service = new ServerStatusService()) => {
+  res.json(await service.get());
 }
 
 export default ServerStatusHandler;

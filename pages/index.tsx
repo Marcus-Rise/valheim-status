@@ -11,17 +11,12 @@ import {
 import {Button, Centered, Dot, SkeletonRow} from "../src/components";
 import Head from "next/head";
 
-const getStaticProps: GetStaticProps = async () => {
-  const service = new ServerStatusService();
-  const status = await service.get();
-
-  return {
-    props: {
-      status
-    },
-    revalidate: 60
-  }
-}
+const getStaticProps: GetStaticProps = async (_, service = new ServerStatusService()) => ({
+  props: {
+    status: await service.get()
+  },
+  revalidate: 60
+})
 
 const Home: FC<{ status: ServerStatusModel }> = (props) => {
   const {status, loadStatus, isLoading} = useServerStatus(props.status);
