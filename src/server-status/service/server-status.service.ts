@@ -11,7 +11,7 @@ class ServerStatusService {
   async get(): Promise<ServerStatusModel> {
     let model = new ServerStatusModel();
 
-    await axios.get(this.config.apiUrl, {timeout: 1000})
+    await axios.get(this.config.apiUrl, {timeout: 500})
       .then((data) => {
         model = ServerStatusModelFabric.fromResponseDto(data.data);
       })
