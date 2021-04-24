@@ -1,25 +1,37 @@
 import type {FC} from 'react';
 import {useMemo} from "react";
-import {ServerStatusEnum, ServerStatusModel} from "../../model";
+import {ServerStatusEnum} from "../../model";
 import {Card, Centered} from "../../../components";
 import styles from "./server-status-card.module.scss"
 import classNames from "classnames";
 
-const ServerStatusCard: FC<{ status: ServerStatusModel }> = ({status}) => {
+interface IServerStatusCardProps {
+  status: ServerStatusEnum,
+  name: string,
+  players: number,
+  version: string
+}
+
+const ServerStatusCard: FC<IServerStatusCardProps> = ({
+                                                        status,
+                                                        name,
+                                                        players,
+                                                        version
+                                                      }) => {
   const rowsObject: Record<string, { text: string | number, className?: string }> = useMemo(() => ({
     Name: {
-      text: status.name
+      text: name
     },
     Status: {
-      text: status.status,
-      className: status.status === ServerStatusEnum.ONLINE ? styles.success : styles.danger
+      text: status,
+      className: status === ServerStatusEnum.ONLINE ? styles.success : styles.danger
     },
     Players: {
-      text: status.players > 0 ? status.players : "none",
-      className: status.players > 0 && styles.bold,
+      text: players > 0 ? players : "none",
+      className: players > 0 && styles.bold,
     },
     Version: {
-      text: status.version,
+      text: version,
     }
   }), [status]);
 

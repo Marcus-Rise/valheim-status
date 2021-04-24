@@ -16,34 +16,25 @@ const getStaticProps: GetStaticProps = async (_, service = new ServerStatusServi
     status: await service.get()
   },
   revalidate: 60
-})
+});
 
 const Home: FC<{ status: ServerStatusModel }> = (props) => {
-  const {status, loadStatus, isLoading} = useServerStatus(props.status);
+  const {status: {status, players, name, version}, loadStatus, isLoading} = useServerStatus(props.status);
+  const playersStr = !!players ? ` (${players})` : '';
+  const title = `Valheim Server ● ${status}${playersStr}`;
 
+  let color = status === ServerStatusEnum.ONLINE ? "var(--color-success)" : "var(--color-danger)";
   return (
     <>
       <Head>
-        <title>Valheim Server ● {status.status && `${status.status}`}</title>
-        <meta name={"description"} content={"MarcusRise Valheim server status"}/>
-        <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png"/>
-        <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png"/>
-        <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png"/>
-        <link rel="manifest" href="/manifest.json"/>
-        <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#5bbad5"/>
-        <meta name="apple-mobile-web-app-title" content="ValheimStatus"/>
-        <meta name="application-name" content="ValheimStatus"/>
-        <meta name="msapplication-TileColor" content="#da532c"/>
-        <meta name="theme-color" content="#adc8e0"/>
+        <title>{title}</title>
       </Head>
       <Centered splash column>
         {!isLoading ? (
           <>
-            <h1>Valheim Server <Dot
-              color={status.status === ServerStatusEnum.ONLINE ? "var(--color-success)" : "var(--color-danger)"}/></h1>
-            <ServerStatusCard status={status}/>
+            <h1>Valheim Server <Dot color={color}/></h1>
+            <ServerStatusCard status={status} name={name} players={players} version={version}/>
             <br/>
-
             <Button onClick={loadStatus}>refresh</Button>
           </>
         ) : (
