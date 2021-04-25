@@ -1,4 +1,4 @@
-import {ServerStatusEnum} from "./server-status.enum";
+import { ServerStatusEnum } from "./server-status.enum";
 
 class ServerStatusModel {
   constructor(
@@ -6,8 +6,7 @@ class ServerStatusModel {
     public name = "Unknown",
     public version = "Unknown",
     public players = 0,
-  ) {
-  }
+  ) {}
 }
 
-export {ServerStatusModel}
+export { ServerStatusModel };

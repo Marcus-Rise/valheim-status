@@ -1,6 +1,6 @@
-import {IServerStatusResponseDto} from "../dto";
-import {ServerStatusModel} from "./server-status.model";
-import {ServerStatusEnum} from "./server-status.enum";
+import type { IServerStatusResponseDto } from "../dto";
+import { ServerStatusModel } from "./server-status.model";
+import { ServerStatusEnum } from "./server-status.enum";
 
 class ServerStatusModelFabric {
   static fromResponseDto(dto: IServerStatusResponseDto): ServerStatusModel {
@@ -9,8 +9,8 @@ class ServerStatusModelFabric {
       dto.name,
       dto.version,
       dto.players,
-    )
+    );
   }
 }
 
-export {ServerStatusModelFabric}
+export { ServerStatusModelFabric };

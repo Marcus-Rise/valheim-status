@@ -1,15 +1,16 @@
-import type {FC} from 'react';
+import type { FC } from "react";
 import styles from "./centered.module.scss";
 import classNames from "classnames";
 
-const Centered: FC<{ splash?: boolean, column?: boolean }> = (props) =>
-  (
-    <div className={classNames(styles.root, {
+const Centered: FC<{ splash?: boolean; column?: boolean }> = (props) => (
+  <div
+    className={classNames(styles.root, {
       [styles.splash]: props.splash,
       [styles.column]: props.column,
-    })}>
-      {props.children}
-    </div>
-  );
+    })}
+  >
+    {props.children}
+  </div>
+);
 
-export {Centered};
+export { Centered };

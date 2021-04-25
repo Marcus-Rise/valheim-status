@@ -1,62 +1,62 @@
-import type {FC} from 'react';
-import {useMemo} from "react";
-import {ServerStatusEnum} from "../../model";
-import {Card, Centered} from "../../../components";
-import styles from "./server-status-card.module.scss"
+import type { FC } from "react";
+import { useMemo } from "react";
+import { ServerStatusEnum } from "../../model";
+import { Card, Centered } from "../../../components";
+import styles from "./server-status-card.module.scss";
 import classNames from "classnames";
 
 interface IServerStatusCardProps {
-  status: ServerStatusEnum,
-  name: string,
-  players: number,
-  version: string
+  status: ServerStatusEnum;
+  name: string;
+  players: number;
+  version: string;
 }
 
-const ServerStatusCard: FC<IServerStatusCardProps> = ({
-                                                        status,
-                                                        name,
-                                                        players,
-                                                        version
-                                                      }) => {
-  const rowsObject: Record<string, { text: string | number, className?: string }> = useMemo(() => ({
-    Name: {
-      text: name
-    },
-    Status: {
-      text: status,
-      className: status === ServerStatusEnum.ONLINE ? styles.success : styles.danger
-    },
-    Players: {
-      text: players > 0 ? players : "none",
-      className: players > 0 && styles.bold,
-    },
-    Version: {
-      text: version,
-    }
-  }), [status]);
+const ServerStatusCard: FC<IServerStatusCardProps> = ({ status, name, players, version }) => {
+  const rowsObject: Record<string, { text: string | number; className?: string }> = useMemo(
+    () => ({
+      Name: {
+        text: name,
+      },
+      Status: {
+        text: status,
+        className: status === ServerStatusEnum.ONLINE ? styles.success : styles.danger,
+      },
+      Players: {
+        text: players > 0 ? players : "none",
+        className: players > 0 && styles.bold,
+      },
+      Version: {
+        text: version,
+      },
+    }),
+    [name, players, status, version],
+  );
 
-  const rows = useMemo(() => Object.keys(rowsObject).map(i => {
-    const row = rowsObject[i];
+  const rows = useMemo(
+    () =>
+      Object.keys(rowsObject).map((i) => {
+        const row = rowsObject[i];
 
-    return (
-      <tr key={i}>
-        <td className={classNames(styles.title, styles.column)}>{i}</td>
-        <td className={classNames(row.className, styles.column, styles.value)}>{row.text}</td>
-      </tr>
-    );
-  }), [rowsObject])
+        return (
+          <tr key={i}>
+            <td className={classNames(styles.title, styles.column)}>{i}</td>
+            <td className={classNames(row.className, styles.column, styles.value)}>{row.text}</td>
+          </tr>
+        );
+      }),
+    [rowsObject],
+  );
 
   return (
     <Card>
       <Centered>
         <table>
-          <tbody>
-          {rows}
-          </tbody>
+          <tbody>{rows}</tbody>
         </table>
       </Centered>
     </Card>
   );
 };
 
-export {ServerStatusCard};
+export { ServerStatusCard };

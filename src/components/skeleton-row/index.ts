@@ -1,1 +1,1 @@
-export {SkeletonRow} from "./skeleton-row.component"
+export * from "./skeleton-row.component";

@@ -1,1 +1,1 @@
-export {ServerStatusConfig} from "./server-status.config"
+export * from "./server-status.config";

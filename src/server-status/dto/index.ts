@@ -1,1 +1,1 @@
-export type {IServerStatusResponseDto} from './server-status.response.dto'
+export * from "./server-status.response.dto";

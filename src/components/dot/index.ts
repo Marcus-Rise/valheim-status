@@ -1,1 +1,1 @@
-export {Dot} from "./dot.component"
+export * from "./dot.component";

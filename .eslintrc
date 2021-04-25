@@ -1,0 +1,14 @@
+{
+  "extends": [
+    "react-app",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "prefer-const": "error",
+    "react/prop-types": "off",
+    "newline-before-return": "error",
+    "@typescript-eslint/consistent-type-imports": "error",
+    "object-shorthand": "error",
+    "react/react-in-jsx-scope": "off"
+  }
+}

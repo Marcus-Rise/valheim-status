@@ -1,6 +1,5 @@
 class ServerStatusConfig {
-  constructor(public readonly apiUrl: string = process.env.API_URL) {
-  }
+  constructor(public readonly apiUrl: string = process.env.API_URL) {}
 }
 
-export {ServerStatusConfig}
+export { ServerStatusConfig };

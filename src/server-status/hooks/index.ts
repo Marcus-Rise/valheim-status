@@ -1,1 +1,1 @@
-export {useServerStatus} from "./use-server-status.hook"
+export * from "./use-server-status.hook";

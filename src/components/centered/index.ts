@@ -1,1 +1,1 @@
-export {Centered} from "./centered.component"
+export * from "./centered.component";

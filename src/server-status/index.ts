@@ -1,4 +1,4 @@
-export * from "./model"
-export {ServerStatusService} from "./service"
+export * from "./model";
+export * from "./service";
 export * from "./components";
-export * from "./hooks"
+export * from "./hooks";

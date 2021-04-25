@@ -1,1 +1,1 @@
-export {ServerStatusService} from "./server-status.service"
+export { ServerStatusService } from "./server-status.service";

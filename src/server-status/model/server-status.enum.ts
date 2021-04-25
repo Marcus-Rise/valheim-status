@@ -1,6 +1,6 @@
 enum ServerStatusEnum {
-  ONLINE= "online",
-  OFFLINE = "offline"
+  ONLINE = "online",
+  OFFLINE = "offline",
 }
 
-export {ServerStatusEnum}
+export { ServerStatusEnum };
