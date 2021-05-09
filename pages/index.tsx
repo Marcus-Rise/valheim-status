@@ -1,14 +1,8 @@
 import type { FC } from "react";
 import type { GetStaticProps } from "next";
 import type { ServerStatusModel } from "../src/server-status";
-import {
-  ServerStatusCard,
-  ServerStatusCardSkeleton,
-  ServerStatusEnum,
-  ServerStatusService,
-  useServerStatus,
-} from "../src/server-status";
-import { Button, Centered, Dot, SkeletonRow } from "../src/components";
+import { ServerStatusCard, ServerStatusCardSkeleton, ServerStatusService, useServerStatus } from "../src/server-status";
+import { Button, Centered, SkeletonRow } from "../src/components";
 import Head from "next/head";
 
 const getStaticProps: GetStaticProps = async (_, service = new ServerStatusService()) => ({
@@ -27,8 +21,6 @@ const Home: FC<{ status: ServerStatusModel }> = (props) => {
   const playersStr = !!players ? ` (${players})` : "";
   const title = `Valheim Server ● ${status}${playersStr}`;
 
-  const color = status === ServerStatusEnum.ONLINE ? "var(--color-success)" : "var(--color-danger)";
-
   return (
     <>
       <Head>
@@ -37,17 +29,12 @@ const Home: FC<{ status: ServerStatusModel }> = (props) => {
       <Centered splash column>
         {!isLoading ? (
           <>
-            <h1>
-              Valheim Server <Dot color={color} />
-            </h1>
             <ServerStatusCard status={status} name={name} players={players} version={version} />
             <br />
             <Button onClick={loadStatus}>refresh</Button>
           </>
         ) : (
           <>
-            <SkeletonRow style={{ width: "15em" }} />
-            <br />
             <ServerStatusCardSkeleton />
             <br />
             <SkeletonRow style={{ width: "5em" }} />

@@ -50,6 +50,18 @@ const ServerStatusCard: FC<IServerStatusCardProps> = ({ status, name, players, v
 
   return (
     <Card>
+      <h1>
+        Valheim Server{" "}
+        <span
+          className={classNames(styles.dot, {
+            [styles.dotSuccess]: status === ServerStatusEnum.ONLINE,
+            [styles.dotDanger]: status === ServerStatusEnum.OFFLINE,
+          })}
+        >
+          ◉
+        </span>
+      </h1>
+
       <Centered>
         <table>
           <tbody>{rows}</tbody>
